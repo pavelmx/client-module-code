@@ -34,14 +34,15 @@ public class WebController {
         model.addAttribute("attr1", access_token);
 
         response.addCookie(new Cookie("access_token", access_token));
+
         return "securedPage";
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    /*@PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping("/")
     public String index(Model model, Principal principal) {
         return "index";
-    }
+    }*/
 
 
 
