@@ -1,4 +1,4 @@
-package com.okta.spring.SpringBootOAuthClient.controller;
+package com.innowise.SpringBootOAuthClient.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

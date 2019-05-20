@@ -1,4 +1,4 @@
-package com.okta.spring.SpringBootOAuthClient.security;
+package com.innowise.SpringBootOAuthClient.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

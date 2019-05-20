@@ -1,4 +1,4 @@
-package com.okta.spring.SpringBootOAuthClient;
+package com.innowise.SpringBootOAuthClient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

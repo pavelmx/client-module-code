@@ -1,4 +1,4 @@
-package com.okta.spring.SpringBootOAuthClient.security;//package com.innowise.client.security;
+package com.innowise.SpringBootOAuthClient.security;//package com.innowise.client.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.okta.spring.SpringBootOAuthClient;
+package com.innowise.SpringBootOAuthClient;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
