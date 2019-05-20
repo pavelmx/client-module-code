@@ -1,0 +1,63 @@
+server:
+  port: 8086
+
+http:
+  port: 10181
+
+database:
+  username: postgres
+  password: 12345
+  url: jdbc:postgresql://localhost:5432
+  driver: org.postgresql.Driver
+app:
+  database:
+    name: postgres
+    username: su
+    password: 54321
+
+spring:
+  jpa:
+    show-sql: false
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mydb?currentSchema=candidate_module_db
+    username: myuser
+    password: 123
+
+
+  security:
+    oauth2:
+      client:
+        registration:
+          custom-client:
+            client-id: clientid
+            client-secret: clientsecret
+            client-name: Auth Server
+            scope: read,write
+            provider: custom-provider
+            redirect-uri-template: http://localhost:8086/login/oauth2/code/
+#            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+        provider:
+          custom-provider:
+            token-uri: http://localhost:8085/auth/oauth/token
+            authorization-uri: http://localhost:8085/auth/oauth/authorize
+            user-info-uri: http://localhost:8085/auth/user/me
+            user-name-attribute: name
+
+
+
+logging:
+  file: ${LOG_PATH:.}/candidate-module.log
+  path: ${LOG_PATH:.}
+
+security:
+  enabled: true
+  oauth2:
+    resource:
+      id: oauth2_application

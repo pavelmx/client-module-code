@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="init" author="Andrei_Labotski">
+        <comment>Initial change set</comment>
+    </changeSet>
+    <changeSet id="2019-04-18-1" author="Andrei_Labotski">
+        <comment>Creating candidate table</comment>
+        <createSequence sequenceName="sq_candidate" startValue="1000" incrementBy="10" minValue="1000" schemaName="candidate_module_db"/>
+        <createTable tableName="candidate">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="sq_candidate">
+                <constraints primaryKey="true" primaryKeyName="pk_candidate"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                    <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="telephone" type="VARCHAR(255)"/>
+            <column name="skype" type="VARCHAR(255)"/>
+            <column name="mail" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="updated" type="TIMESTAMP"/>
+        </createTable>
+        <rollback>
+            <dropSequence sequenceName="sq_candidate"/>
+            <dropTable tableName="candidate"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="2019-04-18-2" author="Andrei_Labotski">
+        <comment>Creating attachment table</comment>
+        <createSequence sequenceName="sq_attachment" startValue="1000" incrementBy="10" minValue="1000" schemaName="candidate_module_db"/>
+        <createTable tableName="attachment">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="sq_attachment">
+                <constraints primaryKey="true" primaryKeyName="pk_attachment"/>
+            </column>
+            <column name="candidate_id" type="BIGINT"/>
+            <column name="file_name" type="VARCHAR(255)"/>
+            <column name="path" type="VARCHAR(255)"/>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="updated" type="TIMESTAMP"/>
+        </createTable>
+        <rollback>
+            <dropSequence sequenceName="sq_attachment"/>
+            <dropTable tableName="attachment"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="2019-04-18-3" author="Andrei_Labotski">
+        <comment>Creating employee table</comment>
+        <createSequence sequenceName="sq_employee" startValue="1000" incrementBy="10" minValue="1000" schemaName="candidate_module_db"/>
+        <createTable tableName="employee">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="sq_employee">
+                <constraints primaryKey="true" primaryKeyName="pk_employee"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="updated" type="TIMESTAMP"/>
+            <column name="deleted" type="BOOLEAN" defaultValue="FALSE"/>
+            <column name="department_id" type="BIGINT"/>
+        </createTable>
+        <rollback>
+            <dropSequence sequenceName="sq_employee"/>
+            <dropTable tableName="employee"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="2019-04-18-4" author="Andrei_Labotski">
+        <comment>Creating table with information about interviews</comment>
+        <createSequence sequenceName="sq_interview" startValue="1000" incrementBy="10" minValue="1000" schemaName="candidate_module_db"/>
+        <createTable tableName="interview">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="sq_interview">
+                <constraints primaryKey="true" primaryKeyName="pk_interview"/>
+            </column>
+            <column name="candidate_id" type="BIGINT"/>
+            <column name="interview_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="updated" type="TIMESTAMP"/>
+        </createTable>
+        <rollback>
+            <dropSequence sequenceName="sq_interview"/>
+            <dropTable tableName="interview"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="2019-04-18-5" author="Andrei_Labotski">
+        <comment>Creating interview_employee table</comment>
+        <createSequence sequenceName="sq_interview_employee" startValue="1000" incrementBy="10" minValue="1000" schemaName="candidate_module_db"/>
+        <createTable tableName="interview_employee">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="sq_interview_employee">
+                <constraints primaryKey="true" primaryKeyName="pk_interview_employee"/>
+            </column>
+            <column name="employee_id" type="BIGINT"/>
+            <column name="interview_id" type="BIGINT"/>
+            <column name="feedback" type="VARCHAR(255)"/>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="updated" type="TIMESTAMP"/>
+        </createTable>
+        <rollback>
+            <dropSequence sequenceName="sq_interview_employee"/>
+            <dropTable tableName="interview_employee"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="2019-04-18-6" author="Andrei_Labotski">
+        <comment>Creating department table</comment>
+        <createSequence sequenceName="sq_department" startValue="1000" incrementBy="10" minValue="1000" schemaName="candidate_module_db"/>
+        <createTable tableName="department">
+            <column name="id" type="BIGINT" defaultValueSequenceNext="sq_department">
+                <constraints primaryKey="true" primaryKeyName="pk_department"/>
+            </column>
+            <column name="department_name" type="VARCHAR(255)"/>
+            <column name="created" type="TIMESTAMP"/>
+            <column name="updated" type="TIMESTAMP"/>
+        </createTable>
+        <rollback>
+            <dropSequence sequenceName="sq_department"/>
+            <dropTable tableName="department"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="2019-04-18-7" author="Andrei_Labotski">
+        <addForeignKeyConstraint baseTableName="attachment"
+                                 baseColumnNames="candidate_id"
+                                 constraintName="fk_attachment_candidate"
+                                 onDelete="CASCADE"
+                                 onUpdate="NO ACTION"
+                                 referencedTableName="candidate"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="employee"
+                                 baseColumnNames="department_id"
+                                 constraintName="fk_employee_department"
+                                 referencedTableName="department"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="interview"
+                                 baseColumnNames="candidate_id"
+                                 constraintName="fk_interview_candidate"
+                                 onDelete="CASCADE"
+                                 onUpdate="NO ACTION"
+                                 referencedTableName="candidate"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="interview_employee"
+                                 baseColumnNames="employee_id"
+                                 constraintName="fk_interview_employee_employee"
+                                 onDelete="CASCADE"
+                                 referencedTableName="employee"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="interview_employee"
+                                 baseColumnNames="interview_id"
+                                 constraintName="fk_interview_employee_interview"
+                                 onDelete="CASCADE"
+                                 referencedTableName="interview"
+                                 referencedColumnNames="id"/>
+        <rollback>
+            <dropForeignKeyConstraint baseTableName="attachment"/>
+            <dropForeignKeyConstraint baseTableName="employee"/>
+            <dropForeignKeyConstraint baseTableName="interview"/>
+            <dropAllForeignKeyConstraints baseTableName="interview_employee"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
