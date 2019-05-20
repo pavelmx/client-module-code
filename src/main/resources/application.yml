@@ -21,8 +21,6 @@ spring:
     cache: false
 
   security:
-    basic:
-      enabled: false
     oauth2:
       client:
         registration:
@@ -42,6 +40,7 @@ spring:
             user-info-uri: http://localhost:8085/auth/user/me
             user-name-attribute: name
 security:
+  enabled: true
   oauth2:
     resource:
       id: oauth2_application
